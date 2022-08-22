@@ -1,0 +1,24 @@
+- name: Extend disk's space
+  hosts: localhost
+  connection: local
+  tasks:
+  - name: Poweroff and deallocate
+    azure_rm_virtualmachine:
+      resource_group: myResourceGroup
+      name: myVM
+      started: no
+      allocated: no
+  - name: Resize the managed disk
+    azure_rm_manageddisk:
+      name: mymanageddisk
+      managed_by: myVM
+      location: eastus
+      disk_size_gb: 2
+      resource_group: myResourceGroup
+      attach_caching: read_only
+  - name: Turn on and allocate VM
+    azure_rm_virtualmachine:
+      resource_group: myResourceGroup
+      name: myVM
+      started: yes
+      allocated: yes

@@ -1,0 +1,14 @@
+
+---
+- name: "Playbook for testing."
+  hosts: "localhost"
+  connection: "local"
+  gather_facts: false
+  collections:
+    - azure.azcollection
+
+  tasks:
+    - name: "Create resource group."
+      azure_rm_resourcegroup:
+        name: "my-test-rg"
+        location: "centralus"

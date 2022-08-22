@@ -1,0 +1,23 @@
+---
+- hosts: localhost
+  tasks:
+    - name: List resoure under {{ name }} before deleting
+      azure_rm_resourcegroup_facts:
+        name: "{{ name }}"
+      register: rg
+    - debug:
+        var: rg
+    - name: Deleting resource group - "{{ name }}"
+      azure_rm_resourcegroup:
+        name: "{{ name }}"
+        state: absent
+        force_delete_nonempty: yes
+      register: rg
+    - debug:
+        var: rg
+    - name: List resoure under {{ name }} after deleting
+      azure_rm_resourcegroup_facts:
+        name: "{{ name }}"
+      register: rg
+    - debug:
+        var: rg        
