@@ -61,7 +61,7 @@
       ssh_public_keys:
         - path: /home/azureuser/.ssh/authorized_keys
           key_data: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDASk16UJe+v5fGJKi2LGqli7X951DMT0CtcBe0mxHuir7YihgP4qanOyQOTW1DwdgYY4Xhgat+x35QfVoiBp22vqtqXuQOdSrcfP3Yu2LHPF7q8jgJbzEyBOW79oliCX++wiDs6fOPy8XgM7bfsLO5ojqZ6EqcThpIRCkOfiBHSX+OtV6KJShuCKeOyDWRupQWRmoPmgTmw+TtHhla0XSjOig/wM0fFAH+xZKLj7B4nntytVzdPRbMVnLsO3FS9l8thngSiyOIOiBG+ymAX+a+V6PxGd3u+TyZGCM5NrhKJ5hREDlwugRhmmHLPuTq/+PJ5Tr5KXJnF88kuteKDpwlIlRibuv4/EoL4GVTsLadr6mqRjUmdungJoy/x4VMYSmcSJX1LbUdPeYq74hNW6PWjGrIF+/L3mtLevhwOn1AXnakRilya3TvoXMWCAmkF111tFTgFQZFZmMWmXiD4ABKxQfcZx/L1PrY8o+qYDPaohzJdUcBFsxb4YBjfDcuoyk= huan thai phan@Vietnam-4242"
-      # network_interfaces: nic-hos-{{ name }}
+      network_interfaces: vmansibledev850
       image:
         offer: CentOS
         publisher: OpenLogic
