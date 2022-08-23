@@ -1,23 +1,25 @@
 ---
 - hosts: localhost
+  vars:
+    name: test
   tasks:
-    - name: List resoure under {{ name }} before deleting
+    - name: List resoure under rg-hos-{{ name }} before deleting
       azure_rm_resourcegroup_facts:
-        name: "{{ name }}"
+        name: "rg-hos-{{ name }}"
       register: rg
     - debug:
         var: rg
-    - name: Deleting resource group - "{{ name }}"
+    - name: Deleting resource group - "rg-hos-{{ name }}"
       azure_rm_resourcegroup:
-        name: "{{ name }}"
+        name: "rg-hos-{{ name }}"
         state: absent
         force_delete_nonempty: yes
       register: rg
     - debug:
         var: rg
-    - name: List resoure under {{ name }} after deleting
+    - name: List resoure under rg-hos-{{ name }} after deleting
       azure_rm_resourcegroup_facts:
-        name: "{{ name }}"
+        name: "rg-hos-{{ name }}"
       register: rg
     - debug:
         var: rg        
