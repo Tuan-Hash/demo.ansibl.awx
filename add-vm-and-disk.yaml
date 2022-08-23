@@ -19,15 +19,15 @@
       name: snet-hos-{{ name }}
       address_prefix: "10.0.1.0/24"
       virtual_network: vnet-hos-{{ name }}
-  # - name: Create public IP address
-  #   azure_rm_publicipaddress:
-  #     resource_group: rg-hos-{{ name }}
-  #     allocation_method: Static
-  #     name: myPublicIP
-    # register: output_ip_address
-  # - name: Public IP of VM
-  #   debug:
-  #     msg: "The public IP is {{ output_ip_address.state.ip_address }}."
+  - name: Create public IP address
+    azure_rm_publicipaddress:
+      resource_group: rg-hos-{{ name }}
+      allocation_method: Static
+      name: publicIP-hos-{{ name }}
+    register: output_ip_address
+  - name: Public IP of VM
+    debug:
+      msg: "The public IP is {{ output_ip_address.state.ip_address }}."
   - name: Create Network Security Group that allows SSH
     azure_rm_securitygroup:
       resource_group: rg-hos-{{ name }}
@@ -45,7 +45,7 @@
       name: nic-hos-{{ name }}
       virtual_network: vnet-hos-{{ name }}
       subnet: snet-hos-{{ name }}
-      # public_ip_name: myPublicIP
+      public_ip_name: publicIP-hos-{{ name }}
       security_group: nsg-hos-{{ name }}
   - name: Create VM
     azure_rm_virtualmachine:
