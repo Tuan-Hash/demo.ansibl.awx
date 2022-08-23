@@ -8,45 +8,45 @@
     azure_rm_resourcegroup:
       name: rg-hos-{{ name }}
       location: northcentralus
-  - name: Create virtual network
-    azure_rm_virtualnetwork:
-      resource_group: rg-hos-{{ name }}
-      name: vnet-hos-{{ name }}
-      address_prefixes: "10.0.0.0/16"
-  - name: Add subnet
-    azure_rm_subnet:
-      resource_group: rg-hos-{{ name }}
-      name: snet-hos-{{ name }}
-      address_prefix: "10.0.1.0/24"
-      virtual_network: vnet-hos-{{ name }}
-  - name: Create public IP address
-    azure_rm_publicipaddress:
-      resource_group: rg-hos-{{ name }}
-      allocation_method: Static
-      name: publicIP-hos-{{ name }}
-    register: output_ip_address
-  - name: Public IP of VM
-    debug:
-      msg: "The public IP is {{ output_ip_address.state.ip_address }}."
-  - name: Create Network Security Group that allows SSH
-    azure_rm_securitygroup:
-      resource_group: rg-hos-{{ name }}
-      name: nsg-hos-{{ name }}
-      rules:
-        - name: SSH
-          protocol: Tcp
-          destination_port_range: 22
-          access: Allow
-          priority: 1001
-          direction: Inbound
-  - name: Create virtual network interface card
-    azure_rm_networkinterface:
-      resource_group: rg-hos-{{ name }}
-      name: nic-hos-{{ name }}
-      virtual_network: vnet-hos-{{ name }}
-      subnet: snet-hos-{{ name }}
-      public_ip_name: publicIP-hos-{{ name }}
-      security_group: nsg-hos-{{ name }}
+  # - name: Create virtual network
+  #   azure_rm_virtualnetwork:
+  #     resource_group: rg-hos-{{ name }}
+  #     name: vnet-hos-{{ name }}
+  #     address_prefixes: "10.0.0.0/16"
+  # - name: Add subnet
+  #   azure_rm_subnet:
+  #     resource_group: rg-hos-{{ name }}
+  #     name: snet-hos-{{ name }}
+  #     address_prefix: "10.0.1.0/24"
+  #     virtual_network: vnet-hos-{{ name }}
+  # - name: Create public IP address
+  #   azure_rm_publicipaddress:
+  #     resource_group: rg-hos-{{ name }}
+  #     allocation_method: Static
+  #     name: publicIP-hos-{{ name }}
+  #   register: output_ip_address
+  # - name: Public IP of VM
+  #   debug:
+  #     msg: "The public IP is {{ output_ip_address.state.ip_address }}."
+  # - name: Create Network Security Group that allows SSH
+  #   azure_rm_securitygroup:
+  #     resource_group: rg-hos-{{ name }}
+  #     name: nsg-hos-{{ name }}
+  #     rules:
+  #       - name: SSH
+  #         protocol: Tcp
+  #         destination_port_range: 22
+  #         access: Allow
+  #         priority: 1001
+  #         direction: Inbound
+  # - name: Create virtual network interface card
+  #   azure_rm_networkinterface:
+  #     resource_group: rg-hos-{{ name }}
+  #     name: nic-hos-{{ name }}
+  #     virtual_network: vnet-hos-{{ name }}
+  #     subnet: snet-hos-{{ name }}
+  #     public_ip_name: publicIP-hos-{{ name }}
+  #     security_group: nsg-hos-{{ name }}
   - name: Create VM
     azure_rm_virtualmachine:
       resource_group: rg-hos-{{ name }}
@@ -61,7 +61,7 @@
       ssh_public_keys:
         - path: /home/azureuser/.ssh/authorized_keys
           key_data: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDASk16UJe+v5fGJKi2LGqli7X951DMT0CtcBe0mxHuir7YihgP4qanOyQOTW1DwdgYY4Xhgat+x35QfVoiBp22vqtqXuQOdSrcfP3Yu2LHPF7q8jgJbzEyBOW79oliCX++wiDs6fOPy8XgM7bfsLO5ojqZ6EqcThpIRCkOfiBHSX+OtV6KJShuCKeOyDWRupQWRmoPmgTmw+TtHhla0XSjOig/wM0fFAH+xZKLj7B4nntytVzdPRbMVnLsO3FS9l8thngSiyOIOiBG+ymAX+a+V6PxGd3u+TyZGCM5NrhKJ5hREDlwugRhmmHLPuTq/+PJ5Tr5KXJnF88kuteKDpwlIlRibuv4/EoL4GVTsLadr6mqRjUmdungJoy/x4VMYSmcSJX1LbUdPeYq74hNW6PWjGrIF+/L3mtLevhwOn1AXnakRilya3TvoXMWCAmkF111tFTgFQZFZmMWmXiD4ABKxQfcZx/L1PrY8o+qYDPaohzJdUcBFsxb4YBjfDcuoyk= huan thai phan@Vietnam-4242"
-      network_interfaces: nic-hos-{{ name }}
+      # network_interfaces: nic-hos-{{ name }}
       image:
         offer: CentOS
         publisher: OpenLogic
