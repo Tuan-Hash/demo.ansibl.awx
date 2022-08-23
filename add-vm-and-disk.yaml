@@ -71,7 +71,7 @@
     azure_rm_manageddisk:
       name: mdisk-hos-{{ name }}
       managed_by: vm-hos-{{ name }}
-      location: eastus
+      location: northcentralus
       disk_size_gb: 1
       resource_group: rg-hos-{{ name }}
       attach_caching: read_only
