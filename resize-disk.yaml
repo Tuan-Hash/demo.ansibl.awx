@@ -15,7 +15,7 @@
       name: mdisk-hos-{{ name }}
       managed_by: vm-hos-{{ name }}
       location: northcentralus
-      disk_size_gb: 2
+      disk_size_gb: "{{ disk_capacity_extend }}"
       resource_group: rg-hos-{{ name }}
       attach_caching: read_only
   - name: Turn on and allocate VM
