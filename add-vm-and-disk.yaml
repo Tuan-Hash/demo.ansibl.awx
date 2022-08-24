@@ -2,6 +2,7 @@
   hosts: localhost
   vars:
     name: test
+    size_disk: 2
   connection: local
   tasks:
   - name: Create resource group
@@ -72,7 +73,7 @@
       name: mdisk-hos-{{ name }}
       managed_by: vm-hos-{{ name }}
       location: northcentralus
-      disk_size_gb: 1
+      disk_size_gb: {{ size_disk }}
       resource_group: rg-hos-{{ name }}
       attach_caching: read_only
 
